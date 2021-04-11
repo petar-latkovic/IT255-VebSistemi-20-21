@@ -1,0 +1,24 @@
+#header_container {
+    background-color:#333;
+}
+header > a > img {
+    width: 4em;
+    height: 4em;
+}
+header .nav-link {
+    padding: 1.25em;
+    font-weight: 650;
+    color:rgba(255, 255, 255, .5);
+    border-bottom: .25em solid transparent;
+}
+header .nav-link:hover,
+header .nav-link:focus {
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+header .active {
+    color:white;
+    border-bottom-color: white;
+}
+header .nav-item {
+    padding: 0.25em;
+}

@@ -1,0 +1,63 @@
+<div class="row mx-3 d-flex">
+    <div class="card p-0 col-8">
+        <h4 class="card-header">Add product</h4>
+        <div class="card-body">
+            <form action="" id="addProduct" #addProductForm>
+                <div class="mb-3">
+                    <label for="productTile" class="form-label">Title</label>
+                    <input id="productTitle" type="text" class="form-control" #newtitle>
+                </div>
+                <div class="mb-3">
+                    <label for="productWeight" class="form-label">Weight</label>
+                    <input id="productWeight" type="text" class="form-control" #newweight>
+                </div>
+                <div class="mb-3">
+                    <label for="productPrice" class="form-label">Price</label>
+                    <input id="productPrice" type="text" class="form-control" #newprice>
+                </div>
+                <div class="mb-3">
+                    <label for="productDescription" class="form-label">Description</label>
+                    <textarea id="productDescription" class="form-control" #newdescription></textarea>
+                </div>
+                <div class="d-grid justify-content-end">
+                    <button type="button" (click)="addProduct(newtitle,newdescription,newweight,newprice);clearForm(addProductForm)" class="btn btn-success">Add
+                        new product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-4">
+        <form action="" id="filterForm">
+            <div class="input-group mb-3">
+                <span class="input-group-text bi bi-filter"></span>
+                <input name="priceFilter" type="text" class="form-control" placeholder="Price lesser than" [(ngModel)]="priceFilter" >
+                <span class="input-group-text">&euro;</span>
+            </div>
+        </form>
+        <form action="" id="randomOrder">
+            <div class="input-group mb-3">
+                <button type="button" (click)="shuffleArray(products)" class="btn btn-info">Random order</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row px-2 mx-1">
+    <div *ngFor="let product of products | filter:priceFilter" class="card m-2 p-0 border-light">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="../../assets/importPic.png" class="card-img-top" alt="">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title">{{ product.title }}</h3>
+                    <div>
+                        <p class="card-text">{{ product.description }}</p>
+                        <h4 class="text-end">{{ product.price }} &euro;</h4>
+                        <a href="#" class="btn btn-secondary">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
