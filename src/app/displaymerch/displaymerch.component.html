@@ -1,31 +1,5 @@
+
 <div class="row mx-3 d-flex">
-    <div class="card p-0 col-8">
-        <h4 class="card-header">Add product</h4>
-        <div class="card-body">
-            <form action="" id="addProduct" #addProductForm>
-                <div class="mb-3">
-                    <label for="productTile" class="form-label">Title</label>
-                    <input id="productTitle" type="text" class="form-control" #newtitle>
-                </div>
-                <div class="mb-3">
-                    <label for="productWeight" class="form-label">Weight</label>
-                    <input id="productWeight" type="text" class="form-control" #newweight>
-                </div>
-                <div class="mb-3">
-                    <label for="productPrice" class="form-label">Price</label>
-                    <input id="productPrice" type="text" class="form-control" #newprice>
-                </div>
-                <div class="mb-3">
-                    <label for="productDescription" class="form-label">Description</label>
-                    <textarea id="productDescription" class="form-control" #newdescription></textarea>
-                </div>
-                <div class="d-grid justify-content-end">
-                    <button type="button" (click)="addProduct(newtitle,newdescription,newweight,newprice);clearForm(addProductForm)" class="btn btn-success">Add
-                        new product</button>
-                </div>
-            </form>
-        </div>
-    </div>
     <div class="col-4">
         <form action="" id="filterForm">
             <div class="input-group mb-3">
@@ -50,11 +24,44 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h3 class="card-title">{{ product.title }}</h3>
+                    <h3 class="card-title" #productTitle>{{ product.title }}</h3>
                     <div>
-                        <p class="card-text">{{ product.description }}</p>
-                        <h4 class="text-end">{{ product.price }} &euro;</h4>
-                        <a href="#" class="btn btn-secondary">Add to cart</a>
+                        <p class="card-text" #productDescription>{{ product.description }}</p>
+                        <h4 class="text-end" #productPrice>{{ product.price }} &euro;</h4>
+                        <button type="button" (click)="removeProduct(productTitle,productPrice)" class="btn btn-danger ms-2">Remove</button>
+                        <button type="button" class="btn btn-info ms-2" (click)="onEdit()">Edit</button>
+                        <div class="my-2" id="" *ngIf="display">
+                            <div class="card p-0">
+                                <h4 class="card-header">Edit</h4>
+                                <div class="card-body">
+                                    <form action="" id="addProduct" #editProductForm>
+                                        <div class="mb-3">
+                                            <label for="productTile" class="form-label">Title</label>
+                                            <input id="productTitle" type="text" class="form-control" #editTitle>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="productWeight" class="form-label">Weight</label>
+                                            <input id="productWeight" type="text" class="form-control" #editWeight>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="productPrice" class="form-label">Price</label>
+                                            <input id="productPrice" type="text" class="form-control" #editPrice>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="productDescription" class="form-label">Description</label>
+                                            <textarea id="productDescription" class="form-control" #editDescription></textarea>
+                                        </div>
+                                        <div class="d-grid justify-content-end">
+                                            <button type="button"
+                                                (click)="editProduct(editTitle,editDescription,editWeight,editPrice,productTitle,productPrice,productDescription);clearForm(editProductForm)"
+                                                class="btn btn-success">
+                                                Confirm </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary ms-2">Add to cart</button>
                     </div>
                 </div>
             </div>

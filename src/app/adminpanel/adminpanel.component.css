@@ -1,0 +1,11 @@
+#productDescription {
+    height: 6em;
+    resize: none;
+}
+.card {
+    max-width: 30em;
+    background-color:#555;
+}
+.card-body > h3, p, h4, label {
+    color:white;
+}

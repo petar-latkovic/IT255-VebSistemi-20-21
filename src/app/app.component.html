@@ -1,2 +1,3 @@
 <app-header></app-header>
-<app-displaymerch></app-displaymerch>
+<app-adminpanel (productAdded)="onAdminAdd($event)"></app-adminpanel>
+<app-displaymerch [products]="products"></app-displaymerch>

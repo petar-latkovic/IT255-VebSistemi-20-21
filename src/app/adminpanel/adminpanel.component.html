@@ -1,0 +1,29 @@
+<div class="row mb-3 mx-3 d-flex">
+    <div class="card p-0 col-8">
+        <h4 class="card-header">Add product</h4>
+        <div class="card-body">
+            <form action="" id="addProduct" #addProductForm>
+                <div class="mb-3">
+                    <label for="productTile" class="form-label">Title</label>
+                    <input id="productTitle" type="text" class="form-control" #newtitle>
+                </div>
+                <div class="mb-3">
+                    <label for="productWeight" class="form-label">Weight</label>
+                    <input id="productWeight" type="text" class="form-control" #newweight>
+                </div>
+                <div class="mb-3">
+                    <label for="productPrice" class="form-label">Price</label>
+                    <input id="productPrice" type="text" class="form-control" #newprice>
+                </div>
+                <div class="mb-3">
+                    <label for="productDescription" class="form-label">Description</label>
+                    <textarea id="productDescription" class="form-control" #newdescription></textarea>
+                </div>
+                <div class="d-grid justify-content-end">
+                    <button type="button" (click)="addProduct(newtitle,newdescription,newweight,newprice);clearForm(addProductForm)" class="btn btn-success">
+                        Add new product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

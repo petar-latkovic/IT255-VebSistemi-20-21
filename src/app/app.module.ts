@@ -8,6 +8,7 @@ import { DisplaymerchComponent } from './displaymerch/displaymerch.component';
 import { MerchComponent } from './merch/merch.component';
 import { FilterPipe } from './filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { AdminpanelComponent } from './adminpanel/adminpanel.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     DisplaymerchComponent,
     MerchComponent,
-    FilterPipe
+    FilterPipe,
+    AdminpanelComponent,
   ],
   imports: [
     BrowserModule,

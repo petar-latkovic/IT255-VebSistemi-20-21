@@ -1,5 +1,6 @@
-import { FilterPipe } from './../filter.pipe';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Product } from './product.model';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-displaymerch',
@@ -8,11 +9,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 })
 export class DisplaymerchComponent implements OnInit {
   priceFilter:string="";
-  products = [
-    {title:'Mug', description: 'Standard Ceramic 225ml Mug with logo in multiple colors.', weight: 300, price: 12.5},
-    {title: 'Shirt', description: 'Black 100% cotton shirt with silver logo on front', weight: 450, price: 20},
-    {title: 'Mousepad', description: 'High quality mousepad with silver logo', weight: 225, price: 10}
-  ];
+  display: boolean = false;
+  @Input() products: any;
   
   constructor() {
    }
@@ -20,17 +18,6 @@ export class DisplaymerchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addProduct(title: HTMLInputElement, description: HTMLTextAreaElement, weight: HTMLInputElement, price: HTMLInputElement){
-    let tempTitle = `${title.value}`;
-    let tempDescription = `${description.value}`;
-    let tempWeight = parseFloat(`${weight.value}`);
-    let tempPrice = parseFloat(`${price.value}`);
-
-    this.products.push({title: tempTitle, description:tempDescription, weight: tempWeight, price:tempPrice})
-  }
-  clearForm(form: HTMLFormElement){
-    form.reset();
-  }
   // Fisher-Yates shuffle algorithm
   shuffleArray(array: any[]){
     var n = array.length, i, t;
@@ -40,7 +27,33 @@ export class DisplaymerchComponent implements OnInit {
       array[n] = array[i];
       array[i] = t;
     }
-    console.log(array)
     return array;
+  }
+
+  removeProduct(productTitle: HTMLHeadingElement, productPrice: HTMLHeadingElement){
+
+    this.products.filter((product:any) => {
+      if(product.title == productTitle.innerText && product.price == parseFloat(productPrice.innerText)){
+        this.products.splice(this.products.indexOf(product), 1)
+      }
+    })
+
+  }
+
+  editProduct(editTitle: HTMLInputElement, editDescription: HTMLTextAreaElement, editWeight: HTMLInputElement, editPrice: HTMLInputElement, productTitle: HTMLHeadingElement, productPrice: HTMLHeadingElement, productDescription: HTMLParagraphElement){
+    let tempProd: Product = new Product(editTitle.value,editDescription.value, parseFloat(editWeight.value),parseFloat(editPrice.value));
+    let replaceIndex = 0;
+    this.products.forEach((product:any) => {
+      if(product.title == productTitle.innerText && product.description == productDescription.innerText && product.price == parseFloat(productPrice.innerText)){
+        replaceIndex = this.products.indexOf(product);
+      };
+    });
+    this.products[replaceIndex] = tempProd;
+  }
+  onEdit(){
+    this.display = !this.display;
+  }
+  clearForm(form: HTMLFormElement){
+    form.reset();
   }
 }
