@@ -28,5 +28,8 @@ export class AdminpanelComponent implements OnInit {
   clearForm(form: HTMLFormElement){
     form.reset();
   }
+  log(x:any){
+    console.log(x);
+  }
 
 }

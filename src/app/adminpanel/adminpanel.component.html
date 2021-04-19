@@ -2,25 +2,41 @@
     <div class="card p-0 col-8">
         <h4 class="card-header">Add product</h4>
         <div class="card-body">
-            <form action="" id="addProduct" #addProductForm>
+            <form action="" id="addProduct" #addProductForm #addProductAdmin="ngForm">
                 <div class="mb-3">
                     <label for="productTile" class="form-label">Title</label>
-                    <input id="productTitle" type="text" class="form-control" #newtitle>
+                    <input ngModel required minlength="3" name="inputTitle" id="productTitle" type="text" class="form-control" #newtitle #inputTitle="ngModel">
+                </div>
+                <div *ngIf="inputTitle.touched && inputTitle.invalid"class="alert alert-danger">
+                    <div *ngIf="inputTitle.errors?.required"> Product title is required! </div>
+                    <div *ngIf="inputTitle.errors?.minlength"> Product title must be at least {{inputTitle.errors?.minlength.requiredLength}} letters.</div>
                 </div>
                 <div class="mb-3">
                     <label for="productWeight" class="form-label">Weight</label>
-                    <input id="productWeight" type="text" class="form-control" #newweight>
+                    <input ngModel required pattern="[1-9]|[1-9][0-9]" name="inputWeight" id="productWeight" type="text" class="form-control" #newweight #inputWeight="ngModel">
+                </div>
+                <div *ngIf="inputWeight.touched && inputWeight.invalid" class="alert alert-danger">
+                    <div *ngIf="inputWeight.errors?.required">Weight can't be empty!</div>
+                    <div *ngIf="inputWeight.errors?.pattern"> Weight must be a number, NOT starting with zero!</div>
                 </div>
                 <div class="mb-3">
                     <label for="productPrice" class="form-label">Price</label>
-                    <input id="productPrice" type="text" class="form-control" #newprice>
+                    <input ngModel required pattern="[1-9]|[1-9][0-9]|[1-9].[0-9]" name="inputPrice" id="productPrice" type="text" class="form-control" #newprice #inputPrice="ngModel">
+                </div>
+                <div *ngIf="inputPrice.touched && inputPrice.invalid" class="alert alert-danger">
+                    <div *ngIf="inputPrice.errors?.required">Price can't be empty!</div>
+                    <div *ngIf="inputPrice.errors?.pattern"> Price must be a number, NOT starting with zero!</div>
                 </div>
                 <div class="mb-3">
                     <label for="productDescription" class="form-label">Description</label>
-                    <textarea id="productDescription" class="form-control" #newdescription></textarea>
+                    <textarea ngModel required name="inputDesc" minlength="30" id="productDescription" class="form-control" #newdescription #inputDesc="ngModel"></textarea>
+                </div>
+                <div *ngIf="inputDesc.touched && inputDesc.invalid"class="alert alert-danger">
+                    <div *ngIf="inputDesc.errors?.required"> Description can't be empty! </div>
+                    <div *ngIf="inputDesc.errors?.minlength"> Description must be at least {{inputDesc.errors?.minlength.requiredLength}} characters long.</div>
                 </div>
                 <div class="d-grid justify-content-end">
-                    <button type="button" (click)="addProduct(newtitle,newdescription,newweight,newprice);clearForm(addProductForm)" class="btn btn-success">
+                    <button type="button" (click)="addProduct(newtitle,newdescription,newweight,newprice);clearForm(addProductForm)" class="btn btn-success" [disabled]="!addProductAdmin.valid">
                         Add new product</button>
                 </div>
             </form>
