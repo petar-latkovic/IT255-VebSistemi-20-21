@@ -1,3 +1,4 @@
+import { CartService } from './services/cart.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +10,7 @@ import { MerchComponent } from './merch/merch.component';
 import { FilterPipe } from './filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { AdminpanelComponent } from './adminpanel/adminpanel.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,14 @@ import { AdminpanelComponent } from './adminpanel/adminpanel.component';
     MerchComponent,
     FilterPipe,
     AdminpanelComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

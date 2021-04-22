@@ -22,7 +22,6 @@ export class AdminpanelComponent implements OnInit {
     this.prodTemp.weight = parseFloat(`${weight.value}`);
     this.prodTemp.price = parseFloat(`${price.value}`);
 
-    //let csv = this.prodTemp.title +","+this.prodTemp.description+","+this.prodTemp.weight+","+this.prodTemp.price;
     this.productAdded.emit(this.prodTemp);
   }
   clearForm(form: HTMLFormElement){

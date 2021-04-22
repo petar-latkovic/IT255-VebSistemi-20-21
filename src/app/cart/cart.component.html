@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-end mx-3" *ngIf="showCart">
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let item of currentCart">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold" #productTitle>{{ item.title }}</div>
+                {{ item.price }}&euro;
+                <div id="productCounter"><span (click)="removeProduct(productTitle)" class="bi bi-dash-square"></span>
+                    {{ items.get(item.title) }} <span (click)="addMoreProducts(productTitle)" class="bi bi-plus-square"></span></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="d-flex justify-content-end mx-3" *ngIf="showCartTotal">Cart Total: {{ cartCost }}</div>

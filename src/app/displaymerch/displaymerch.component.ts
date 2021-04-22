@@ -1,3 +1,4 @@
+import { CartService } from './../services/cart.service';
 import { Product } from './product.model';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, Input, OnInit } from '@angular/core';
@@ -8,14 +9,15 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./displaymerch.component.css']
 })
 export class DisplaymerchComponent implements OnInit {
-  priceFilter:string="";
-  display: boolean = false;
+  public priceFilter:string="";
+  public display: boolean = false;
   @Input() products: any;
-  
-  constructor() {
+  public currentCart: Array<Product>;
+  constructor(private _cartService: CartService) {
    }
 
   ngOnInit(): void {
+    this.currentCart = this._cartService.getCurrentCart();
   }
 
   // Fisher-Yates shuffle algorithm
@@ -29,12 +31,22 @@ export class DisplaymerchComponent implements OnInit {
     }
     return array;
   }
-
-  removeProduct(productTitle: HTMLHeadingElement, productPrice: HTMLHeadingElement){
-
+  onAddToCart(productTitle: HTMLHeadingElement,productPrice: HTMLHeadElement){
+    // Filtering products based on title and price
     this.products.filter((product:any) => {
       if(product.title == productTitle.innerText && product.price == parseFloat(productPrice.innerText)){
-        this.products.splice(this.products.indexOf(product), 1)
+        // Addiing to currentCartService
+        this._cartService.addToCurrentCart(product);
+      }
+    })
+  }
+
+  removeProduct(productTitle: HTMLHeadingElement, productPrice: HTMLHeadingElement){
+    // Filtering products array to find matching product title and price
+    this.products.filter((product:any) => {
+      if(product.title == productTitle.innerText && product.price == parseFloat(productPrice.innerText)){
+        // Removing found product from array
+        this.products.splice(this.products.indexOf(product), 1);
       }
     })
 

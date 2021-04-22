@@ -36,7 +36,7 @@
                                 <div class="card-body">
                                     <form action="" id="addProduct" #editProductForm>
                                         <div class="mb-3">
-                                            <label for="productTile" class="form-label">Title</label>
+                                            <label for="productTitle" class="form-label">Title</label>
                                             <input id="productTitle" type="text" class="form-control" #editTitle>
                                         </div>
                                         <div class="mb-3">
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-secondary ms-2">Add to cart</button>
+                        <button type="button" class="btn btn-secondary ms-2" (click)="onAddToCart(productTitle,productPrice)">Add to cart</button>
                     </div>
                 </div>
             </div>
