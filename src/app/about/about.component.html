@@ -1,0 +1,19 @@
+<div class="p-3 m-3">
+    <h3>Youtube Channels Search</h3>
+    <label for="YoutubeSearch">Channel Name;</label>
+    <input type="text" name="searchYT" id="YoutubeSearch" placeholder="Search Youtube" #channelName>
+    <br><br><br>
+    <button class="btn btn-secondary mb-3" (click)="getChannelData(channelName)">Get channels</button>
+
+    <ul *ngFor="let channel of channels">
+        <div class="card">
+            <a href="https://www.youtube.com/channel/{{channel.id.channelId}}" target="_blank">
+                <img src="{{channel.snippet.thumbnails.medium.url}}" class="card-img-top" alt="Thumbnail image for Youtube {{channel.snippet.channelTitle}} channel">
+            </a>
+            <div class="card-body">
+                <h3 class="card-title">{{channel.snippet.channelTitle}}</h3>
+                <p class="card-text">{{channel.snippet.description}}</p>
+            </div>
+        </div>
+    </ul>
+</div>

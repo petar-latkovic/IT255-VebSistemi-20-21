@@ -8,11 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   showCart: boolean = true;
+  showCartTotal: boolean = true;
   constructor() { }
 
   ngOnInit(): void {
   }
-  displayCart(){
-    this.showCart = !this.showCart;
-  }
+  
 }

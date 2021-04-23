@@ -6,6 +6,7 @@ import { Product } from '../displaymerch/product.model';
 })
 export class CartService {
   private currentCart = Array<Product>();
+  private cartTotal: boolean;
   constructor() { }
 
   getCurrentCart(){
@@ -13,5 +14,11 @@ export class CartService {
   }
   addToCurrentCart(cartItem: Product){
     this.currentCart.push(cartItem);
+  }
+  getCartTotal(){
+    return this.cartTotal;
+  }
+  onCartTotal(){
+    this.cartTotal = !this.onCartTotal;
   }
 }

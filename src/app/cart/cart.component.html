@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-end mx-3" *ngIf="showCart">
+<div class="d-flex justify-content-end mx-3">
     <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let item of currentCart">
             <div class="ms-2 me-auto">
@@ -8,6 +8,6 @@
                     {{ items.get(item.title) }} <span (click)="addMoreProducts(productTitle)" class="bi bi-plus-square"></span></div>
             </div>
         </li>
-    </ul>
+        <div class="list-group-item d-flex justify-content-between align-items-start ms-auto me-auto" *ngIf="showCartTotal"><div class="fw-bold">Cart Total: </div>{{ cartCost }}</div>
+    </ul>   
 </div>
-<div class="d-flex justify-content-end mx-3" *ngIf="showCartTotal">Cart Total: {{ cartCost }}</div>

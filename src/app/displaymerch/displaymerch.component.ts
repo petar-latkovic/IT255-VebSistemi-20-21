@@ -1,3 +1,4 @@
+import { ProductsService } from './../services/products.service';
 import { CartService } from './../services/cart.service';
 import { Product } from './product.model';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -11,13 +12,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DisplaymerchComponent implements OnInit {
   public priceFilter:string="";
   public display: boolean = false;
-  @Input() products: any;
+  public products: any;
   public currentCart: Array<Product>;
-  constructor(private _cartService: CartService) {
+  constructor(private _cartService: CartService, private _productsService: ProductsService) {
    }
 
   ngOnInit(): void {
     this.currentCart = this._cartService.getCurrentCart();
+    this.products = this._productsService.getProducts();
   }
 
   // Fisher-Yates shuffle algorithm
@@ -37,6 +39,7 @@ export class DisplaymerchComponent implements OnInit {
       if(product.title == productTitle.innerText && product.price == parseFloat(productPrice.innerText)){
         // Addiing to currentCartService
         this._cartService.addToCurrentCart(product);
+        this._cartService.onCartTotal();
       }
     })
   }
